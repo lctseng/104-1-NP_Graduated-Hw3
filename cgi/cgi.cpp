@@ -42,10 +42,10 @@ void parse_batch_info(){
     const char* query_string = getenv("QUERY_STRING");
     //cout << query_string << endl;
     batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15566,"t1.txt");
-    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15567,"t2.txt");
-    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15568,"t3.txt");
-    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15568,"t4.txt");
-    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15568,"t5.txt");
+    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15566,"t2.txt");
+    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15566,"t3.txt");
+    batch_list.emplace_back("nplinux4.cs.nctu.edu.tw",15567,"t4.txt");
+    batch_list.emplace_back("nplinux4.cs.nctu.edu.tw",15567,"t5.txt");
 }
 
 int main(){

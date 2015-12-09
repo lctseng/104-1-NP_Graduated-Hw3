@@ -189,14 +189,16 @@ public:
             if(n_byte > 0){
 
               buf[n_byte] = '\0';
-              // when get %, go to write mode
-              for(int i=0;i<n_byte;i++){
-                if(buf[i]=='%'){
-                  buf[i] = '\0';
-                  client.state = S_WRITE;
-                  break;
-                }
-              } 
+              if(!client.close_read_command){
+                // when get %, go to write mode
+                for(int i=0;i<n_byte;i++){
+                  if(buf[i]=='%'){
+                    buf[i] = '\0';
+                    client.state = S_WRITE;
+                    break;
+                  }
+                } 
+              }
               client.inject_string(buf);
             }
             else{
