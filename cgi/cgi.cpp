@@ -10,7 +10,8 @@
 using std::cout;
 using std::cin;
 using std::endl;
-
+using std::smatch;
+using std::stoi;
 
 vector<BatchInfo> batch_list;
 
@@ -39,13 +40,14 @@ void print_footer(){
 }
 
 void parse_batch_info(){
-    const char* query_string = getenv("QUERY_STRING");
-    //cout << query_string << endl;
-    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15566,"t1.txt");
-    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15566,"t2.txt");
-    batch_list.emplace_back("nplinux3.cs.nctu.edu.tw",15566,"t3.txt");
-    batch_list.emplace_back("nplinux4.cs.nctu.edu.tw",15567,"t4.txt");
-    batch_list.emplace_back("nplinux4.cs.nctu.edu.tw",15567,"t5.txt");
+    string remain = getenv("QUERY_STRING");
+    smatch match; 
+    while(regex_search(remain,match,regex("h\\d=([a-zA-Z0-9.-]*)&p\\d=([a-zA-Z0-9.-]*)&f\\d=([a-zA-Z0-9.-]*)&?"))){
+      if(!string(match[1]).empty()){
+        batch_list.emplace_back(match[1],stoi(match[2]),match[3]);
+      }
+      remain = match.suffix();
+    }
 }
 
 int main(){
