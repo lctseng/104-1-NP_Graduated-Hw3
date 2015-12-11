@@ -48,9 +48,21 @@ void process_client(int clientfd){
       else{
         query = raw_query.substr(1);
       }
-      // QUERY_STRING
+      // clear env
       clearenv();
+      // QUERY_STRING
       setenv("QUERY_STRING",query.c_str(),1);
+      // basic http env
+      setenv("CONTENT_LENGTH","content length",1);
+      setenv("REQUEST_METHOD","GET",1);
+      setenv("SCRIPT_NAME",filename.c_str(),1);
+      setenv("REMOTE_HOST","lctseng.cs",1);
+      setenv("REMOTE_ADDR","remote addr",1);
+      setenv("AUTH_TYPE","auth type",1);
+      setenv("REMOTE_USER","remote user",1);
+      setenv("REMOTE_IDENT","remote ident",1);
+
+      // reopen
       fd_reopen(FD_STDOUT,clientfd);
       // Exec
       if(!exec_cmd(string("./") + filename,"")){
