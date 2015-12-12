@@ -19,7 +19,7 @@
 #define S_WRITE 2
 #define S_DONE 3
 
-#define MAX_BUF_SIZE 4096
+#define MAX_BUF_SIZE 16000
 
 using std::string;
 using std::ifstream;
